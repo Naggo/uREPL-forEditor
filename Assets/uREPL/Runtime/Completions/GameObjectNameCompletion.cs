@@ -21,7 +21,11 @@ public class GameObjectNameCompletion : CompletionPlugin
 
     protected override void OnEnable()
     {
+#if UNITY_2022_2_OR_NEWER
+        allGameObjects_ = GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None)
+#else
         allGameObjects_ = GameObject.FindObjectsOfType<GameObject>()
+#endif
             .Select(go => new GameObjectInfo(
                 go.name,
                 go.transform.GetPath()))

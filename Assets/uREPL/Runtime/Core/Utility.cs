@@ -17,7 +17,11 @@ static public class Utility
 
     static public GameObject[] GetAllGameObjects()
     {
+#if UNITY_2022_2_OR_NEWER
+        return GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+#else
         return GameObject.FindObjectsOfType<GameObject>();
+#endif
     }
 
     static public string[] GetAllGameObjectPaths()
