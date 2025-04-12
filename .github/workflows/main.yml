@@ -25,13 +25,3 @@ jobs:
           pkg-root-dir-path: Assets/uREPL
           main-branch: master
           root-files: README.md LICENSE.md CHANGELOG.md Third_Party_Notices.md
-
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: NPM publish
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
