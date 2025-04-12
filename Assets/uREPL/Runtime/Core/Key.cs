@@ -35,8 +35,8 @@ public static class KeyUtil
 
 public class KeyEvent
 {
-    private const int holdInputStartDelay = 30;
-    private const int holdInputFrameInterval = 5;
+    private const float holdInputStartDelay = 30f / 60;
+    private const float holdInputFrameInterval = 5f / 60;
 
     public enum Option { None, Ctrl, Shift, Alt, CtrlOrShift };
 
@@ -46,12 +46,14 @@ public class KeyEvent
         public KeyCode key;
         public Option option;
         public int counter;
+        public float timer;
         public System.Action onKeyEvent;
         public EventInfo(KeyCode key, Option option, System.Action onKeyEvent)
         {
             this.key = key;
             this.option = option;
             this.counter = 0;
+            this.timer = 0;
             this.onKeyEvent = onKeyEvent;
         }
     }
@@ -85,22 +87,27 @@ public class KeyEvent
             case Option.CtrlOrShift : option = KeyUtil.ControlOrShift(); break;
         }
 
+        bool holdFlag = false;
         if (Input.GetKey(info.key) && option) {
             ++info.counter;
+            info.timer += Time.deltaTime;
+            if (info.timer >= holdInputStartDelay) {
+                holdFlag = true;
+                info.timer -= holdInputFrameInterval;
+            }
         } else {
             info.counter = 0;
+            info.timer = 0;
         }
 
-        return
-            info.counter == 1 || (
-                (info.counter >= holdInputStartDelay) && 
-                (info.counter % holdInputFrameInterval == 0));
+        return info.counter == 1 || holdFlag;
     }
 
     public void Clear()
     {
         foreach (var info in keyEventList_) {
             info.counter = 0;
+            info.timer = 0;
         }
     }
 }
