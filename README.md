@@ -1,3 +1,8 @@
+uREPL-forEditor
+=====
+uREPL-forEditor is Editor-only variant of uREPL.
+
+
 uREPL
 =====
 
