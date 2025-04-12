@@ -3,6 +3,13 @@ uREPL-forEditor
 uREPL-forEditor is Editor-only variant of uREPL.
 
 
+Install
+-------
+
+- Git URL (UPM)
+  - Add `https://github.com/Naggo/uREPL-forEditor.git#upm` to Package Manager.
+
+
 uREPL
 =====
 
