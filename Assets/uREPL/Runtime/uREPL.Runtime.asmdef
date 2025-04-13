@@ -7,8 +7,10 @@
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Mono.CSharp.dll"
+    ],
     "autoReferenced": true,
     "defineConstraints": [
         "UNITY_EDITOR || DEVELOPMENT_BUILD"
