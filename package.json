@@ -1,6 +1,6 @@
 {
     "name": "com.hecomi.urepl",
-    "version": "1.0.0",
+    "version": "0.1.5",
     "displayName": "uREPL",
     "description": "In-game powerful REPL environment for Unity",
     "author": {
